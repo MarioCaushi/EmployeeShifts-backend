@@ -48,7 +48,7 @@ public class ManagerController : ControllerBase
         var managerId = await _managerService.ManagerLoginAuthentication(login.Username, login.Password);
         if (managerId == 0)
         {
-            return Unauthorized("Invalid username or password."); // Or return BadRequest as per your design choice
+            return Unauthorized("Invalid username or password."); 
         }
 
         return Ok(managerId);

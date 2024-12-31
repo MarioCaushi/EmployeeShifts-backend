@@ -41,8 +41,7 @@ public class ManagerService : IManagerService
         }
             var password = managerDTO.Password;
 
-            if (password.Trim().ToLower() == "" || password.Length < 8 ||
-                password == manager.Password)
+            if (password.Trim().ToLower() == "" || password.Length < 8)
             {
                 return false;
             }
@@ -76,6 +75,7 @@ public class ManagerService : IManagerService
                 Type = employee.Shift.ShiftType
             })
             .ToListAsync();
+        
     }
     
 }
