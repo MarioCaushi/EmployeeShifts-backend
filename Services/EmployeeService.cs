@@ -18,8 +18,10 @@ public class EmployeeService : IEmployeeService
     {
         return await _context.Employees
             .Include(e => e.Shift)  // Include the Shift data in the query
+            .Include(e => e.Manager)  // Include the Manager data in the query
             .SingleOrDefaultAsync(e => e.EmployeeId == employeeId);
     }
+
 
 
     public async Task<bool> DeleteEmployee(int employeeId)
