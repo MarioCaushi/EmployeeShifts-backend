@@ -64,7 +64,7 @@ public class EmployeeController : ControllerBase
 
             if (eventsDeleted)
             {
-                return Ok("Employee deleted successfully but did not have any events");
+                return Ok("Employee deleted successfully and their events");
             }
             return Ok("Employee deleted successfully but not their events");
         }
