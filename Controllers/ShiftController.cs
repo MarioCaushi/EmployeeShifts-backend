@@ -37,4 +37,15 @@ public class ShiftController : ControllerBase
         }
     }
 
+    [HttpGet("get-shift-by-id/{shiftId:int}")]
+    public async Task<IActionResult> GetShiftById(int shiftId)
+    {
+        var shift = await _shiftService.GetShiftById(shiftId);
+        
+        if(shift == null)
+            return NotFound("Shift not found");
+        return Ok(shift);
+    }
+
+
 }

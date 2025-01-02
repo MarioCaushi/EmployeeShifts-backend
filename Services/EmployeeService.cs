@@ -1,7 +1,6 @@
 using EmployeeShift_backend.Data;
 using EmployeeShift_backend.DTOs;
 using EmployeeShift_backend.Models;
-using Microsoft.EntityFrameworkCore;
 
 namespace EmployeeShift_backend.Services.ServicesInterfaces;
 
@@ -16,13 +15,8 @@ public class EmployeeService : IEmployeeService
 
     public async Task<Employee?> GetEmployeeById(int employeeId)
     {
-        return await _context.Employees
-            .Include(e => e.Shift)  // Include the Shift data in the query
-            .Include(e => e.Manager)  // Include the Manager data in the query
-            .SingleOrDefaultAsync(e => e.EmployeeId == employeeId);
+        return await _context.Employees.FindAsync(employeeId);
     }
-
-
 
     public async Task<bool> DeleteEmployee(int employeeId)
     {

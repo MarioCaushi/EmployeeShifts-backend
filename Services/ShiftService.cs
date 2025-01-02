@@ -1,4 +1,5 @@
 using EmployeeShift_backend.Data;
+using EmployeeShift_backend.Models;
 using EmployeeShift_backend.Services.ServicesInterfaces;
 using Microsoft.EntityFrameworkCore;
 
@@ -59,6 +60,11 @@ public class ShiftService : IShiftService
             {"Shift Days", shiftDays},
             {"Shift Times", shiftTimes}
         };
+    }
+
+    public async Task<Shift?> GetShiftById(int shiftId)
+    {
+        return await _context.Shifts.FindAsync(shiftId);
     }
     
 }
