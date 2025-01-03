@@ -1,0 +1,87 @@
+create table Employee
+(
+    EmployeeID  int                                not null
+        primary key,
+    Name        varchar(64)                        not null,
+    LastName    varchar(64)                        not null,
+    Birthday    date                               not null,
+    Email       varchar(64)                        not null,
+    PhoneNumber varchar(64)                        not null,
+    Address     varchar(200)                       not null,
+    CreatedAt   datetime default CURRENT_TIMESTAMP null,
+    UpdatedAt   datetime default CURRENT_TIMESTAMP null on update CURRENT_TIMESTAMP,
+    HireDate    date                               not null,
+    Position    varchar(64)                        not null,
+    Status      varchar(64)                        not null,
+    PayPerHour  float                              not null,
+    ManagerId   int                                null,
+    ShiftId     int                                null,
+    constraint Email
+        unique (Email),
+    constraint employee_ibfk_1
+        foreign key (ManagerId) references employeeshiftdb.Manager (ManagerID),
+    constraint employee_ibfk_2
+        foreign key (ShiftId) references employeeshiftdb.Shift (ShiftID)
+);
+
+create index ManagerID
+    on Employee (ManagerId);
+
+create index ShiftID
+    on Employee (ShiftId);
+
+create table Event
+(
+    EventID     int auto_increment
+        primary key,
+    Title       varchar(255)             not null,
+    Description text                     null,
+    EventDate   date default (curdate()) not null,
+    EventTime   time default (curtime()) not null,
+    EmployeeID  int                      null,
+    constraint event_ibfk_1
+        foreign key (EmployeeID) references employeeshiftdb.Employee (EmployeeID)
+            on delete cascade
+);
+
+create index EmployeeID
+    on Event (EmployeeID);
+
+create table Manager
+(
+    ManagerID   int auto_increment
+        primary key,
+    Name        varchar(64)                        not null,
+    LastName    varchar(64)                        not null,
+    Birthday    date                               not null,
+    Email       varchar(100)                       not null,
+    PhoneNumber varchar(64)                        not null,
+    Username    varchar(64)                        not null,
+    Password    varchar(255)                       not null,
+    Address     varchar(200)                       not null,
+    CreatedAt   datetime default CURRENT_TIMESTAMP null,
+    UpdatedAt   datetime default CURRENT_TIMESTAMP null on update CURRENT_TIMESTAMP,
+    constraint Email
+        unique (Email),
+    constraint ManagerID
+        unique (ManagerID),
+    constraint Username
+        unique (Username)
+);
+
+create table Shift
+(
+    ShiftID    int auto_increment
+        primary key,
+    ShiftType  varchar(64)  not null,
+    ShiftDays  varchar(200) not null,
+    ShiftHours varchar(200) not null
+);
+
+create table __EFMigrationsHistory
+(
+    MigrationId    varchar(150) not null
+        primary key,
+    ProductVersion varchar(32)  not null
+);
+
