@@ -37,15 +37,21 @@ public class ManagerController : ControllerBase
         return Ok(manager);
     }
 
-    [HttpGet("manager-login-authentication/{username}/{password}")]
-    public async Task<IActionResult> ManagerLoginAuthentication(string username, string password)
+    [HttpPost("manager-login-authentication")]
+    public async Task<IActionResult> ManagerLoginAuthentication([FromBody] LoginDTO login)
     {
-        var managerid = await _managerService.ManagerLoginAuthentication(username, password);
-        if (managerid == 0)
+        if (login == null || string.IsNullOrWhiteSpace(login.Username) || string.IsNullOrWhiteSpace(login.Password))
         {
-            return NotFound("Manager not found");
+            return BadRequest("Invalid credentials provided.");
         }
-        return Ok(managerid);
+
+        var managerId = await _managerService.ManagerLoginAuthentication(login.Username, login.Password);
+        if (managerId == 0)
+        {
+            return Unauthorized("Invalid username or password."); 
+        }
+
+        return Ok(managerId);
     }
 
     [HttpGet("get-employees-by-manager-id/{managerId:int}")]

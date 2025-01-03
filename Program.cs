@@ -53,7 +53,10 @@ if (app.Environment.IsDevelopment())
 
 // CORS Configuration
 app.UseCors(options =>
-    options.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
+    options.WithOrigins("http://localhost:3000")
+        .AllowAnyHeader()
+        .AllowAnyMethod());
+
 
 app.UseHttpsRedirection();
 
