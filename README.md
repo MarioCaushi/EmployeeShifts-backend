@@ -1,5 +1,13 @@
 # EmployeeShift Backend
 
+![.NET](https://img.shields.io/badge/.NET-Backend-purple?logo=dotnet&logoColor=white)
+![CSharp](https://img.shields.io/badge/C%23-Backend-green?logo=csharp&logoColor=white)
+![SQL](https://img.shields.io/badge/SQL-Database-orange?logo=postgresql&logoColor=white)
+![REST API](https://img.shields.io/badge/API-REST-blueviolet)
+![Status](https://img.shields.io/badge/Status-Completed-success)
+![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)
+
+
 Welcome to the backend repository for EmployeeShift, a robust ASP.NET Core Web API designed to manage employee shifts and administrative functions efficiently. This backend interfaces with a ReactJS frontend, providing seamless data flow and comprehensive management system capabilities.
 
 ## Technologies Used
